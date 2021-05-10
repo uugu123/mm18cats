@@ -12,16 +12,16 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/utilities";
 
-$theme-colors: (
-    "primary":    black,
-    "secondary":  $secondary,
-    "success":    $success,
-    "info":       $info,
-    "warning":    $warning,
-    "danger":     $danger,
-    "light":      $light,
-    "dark":       $dark
-);
+//$theme-colors: (
+//    "primary":    blue,
+//    "secondary":  $secondary,
+//    "success":    $success,
+//    "info":       $info,
+//    "warning":    $warning,
+//    "danger":     $danger,
+//    "light":      $light,
+//    "dark":       $dark
+//);
 
 // Layout & components
 @import "~bootstrap/scss/root";
