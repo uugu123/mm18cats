@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class CatController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,8 +16,7 @@ class CatController extends Controller
      */
     public function index()
     {
-        $cats = Cat::all()->toArray();
-        return view('home');
+
     }
 
     /**

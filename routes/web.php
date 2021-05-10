@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CatController;
+use \App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [CatController::class, 'index']);
+Route::get('/', [HomeController::class, 'home']);
