@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function home(){
+    public function index(){
         $cats = Cat::all();
-        return view('home', compact('cats'));
+        return view('index', compact('cats'));
     }
 }

@@ -24,9 +24,8 @@
 
 @include('partials.footer')
 
-
 <script src="{{mix("/js/app.js")}}"></script>
-
-
+{{--for npm run hot to work--}}
+{{--<script src="{{ mix('js/bundle.js') }}"></script> --}}
 </body>
 </html>
