@@ -21,6 +21,19 @@
 {{--                @todo add search--}}
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <img src="https://www.countryflags.io/{{config('app.available_locales')[App::getLocale()]}}/flat/32.png">
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            @foreach(config('app.available_locales') as $locale=>$country)
+                                <a class="dropdown-item" href="/lang?lang={{$locale}}">
+                                    <img src="https://www.countryflags.io/{{$country}}/flat/32.png">
+                                </a>
+                            @endforeach
+                        </div>
+                    </li>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
