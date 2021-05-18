@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCatRequest;
 use App\Models\Cat;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class CatController extends Controller
      */
     public function index()
     {
-
+        $cats = Cat::paginate(15);
+        return response()->view('cats.index', compact('cats'));
     }
 
     /**
@@ -26,18 +28,20 @@ class CatController extends Controller
      */
     public function create()
     {
-        //
+        return response()->view('cats.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateCatRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(CreateCatRequest $request)
     {
-        //
+        $cat = new Cat($request->validated());
+        $cat->save();
+        return response()->redirectToRoute('cats.index');
     }
 
     /**

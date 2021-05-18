@@ -28,7 +28,7 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             @foreach(config('app.available_locales') as $locale=>$country)
-                                <a class="dropdown-item" href="/lang?lang={{$locale}}">
+                                <a class="dropdown-item" href="{{route('lang.set', ['lang' => $locale])}}">
                                     <img src="https://www.countryflags.io/{{$country}}/flat/32.png">
                                 </a>
                             @endforeach

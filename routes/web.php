@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/lang', [HomeController::class, 'setLang']);
+Route::get('/setlang', [HomeController::class, 'setLang'])->name('lang.set');
 
 Route::middleware(['auth'])->group(function() {
     Route::get('/home', function() {
@@ -26,4 +26,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/user/profile', function() {
         return view('profile');
     })->name('profile');
+    Route::resource('cats', CatController::class);
 });

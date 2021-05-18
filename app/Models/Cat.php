@@ -9,5 +9,7 @@ class Cat extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'breed', 'gender', 'birthday', 'description'];
+
     protected $casts = ['birthday' => 'datetime'];
 }
