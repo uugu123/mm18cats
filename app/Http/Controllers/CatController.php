@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateCatRequest;
 use App\Models\Cat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CatController extends Controller
 {
@@ -41,6 +42,8 @@ class CatController extends Controller
     {
         $cat = new Cat($request->validated());
         $cat->save();
+        $path = $request->file('image')->store('images', 'public');
+        dd(Storage::disk('public')->url($path));
         return response()->redirectToRoute('cats.index');
     }
 
@@ -52,7 +55,7 @@ class CatController extends Controller
      */
     public function show(Cat $cat)
     {
-        //
+        return response()->view('cats.show', compact('cat'));
     }
 
     /**
@@ -63,29 +66,32 @@ class CatController extends Controller
      */
     public function edit(Cat $cat)
     {
-        //
+        return response()->view('cats.edit', compact('cat'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cat  $cat
-     * @return \Illuminate\Http\Response
+     * @param CreateCatRequest $request
+     * @param \App\Models\Cat $cat
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Cat $cat)
+    public function update(CreateCatRequest $request, Cat $cat)
     {
-        //
+        $cat->fill($request->validated());
+        $cat->save();
+        return response()->redirectToRoute('cats.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Cat  $cat
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Cat $cat)
     {
-        //
+        $cat->delete();
+        return response()->redirectTo(url()->previous());
     }
 }

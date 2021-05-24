@@ -1,0 +1,26 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Cat;
+use App\Models\Image;
+use Illuminate\Database\Seeder;
+
+class ImageSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+//        foreach(Cat::all() as $cat){
+//
+//        }
+
+        Cat::all()->each(function ($cat) {
+            Image::factory()->create(['cat_id' => $cat->id]);
+        });
+    }
+}

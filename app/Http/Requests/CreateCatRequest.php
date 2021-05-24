@@ -29,7 +29,8 @@ class CreateCatRequest extends FormRequest
             'breed' => ['required','max:255'],
             'description' => 'required',
             'gender' => ['required', Rule::in(['MALE', 'FEMALE'])],
-            'birthday' => 'required|date'
+            'birthday' => 'required|date',
+            'image' => 'image|max:' . 1024 * 5 //5mb
         ];
     }
 }

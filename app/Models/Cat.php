@@ -12,4 +12,12 @@ class Cat extends Model
     protected $fillable = ['name', 'breed', 'gender', 'birthday', 'description'];
 
     protected $casts = ['birthday' => 'datetime'];
+
+    public function getAgeAttribute(){
+        return $this->birthday->diffInYears(\Carbon\Carbon::now());
+    }
+
+    public function images(){
+        return $this->hasMany(Image::class);
+    }
 }
