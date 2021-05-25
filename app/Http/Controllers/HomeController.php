@@ -17,4 +17,8 @@ class HomeController extends Controller
         App::setLocale($request->get('lang'));
         return redirect(url()->previous());
     }
+
+    public function single(Cat $cat){
+        return response()->view('single', compact('cat'));
+    }
 }

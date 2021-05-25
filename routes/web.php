@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/{cat}', [HomeController::class, 'single'])->name('single');
 Route::get('/setlang', [HomeController::class, 'setLang'])->name('lang.set');
 
 Route::middleware(['auth'])->group(function() {

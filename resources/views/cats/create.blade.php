@@ -60,8 +60,8 @@
                     {{$message}}
                 </div>
                 @enderror
-                <label for="image" class="form-label">Image</label>
-                <input type="file" class="form-control" id="image" name="image">
+                <label for="images" class="form-label">Image</label>
+                <input type="file" class="form-control" id="images" name="images[]" multiple>
             </div>
             <div class="mb-3">
                 <input type="submit" class="btn btn-primary">

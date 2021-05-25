@@ -43,11 +43,14 @@ class CatController extends Controller
     {
         $cat = new Cat($request->validated());
         $cat->save();
-        $image = new Image();
-        $image->path = $request->file('image')->store('images', 'public');
-        //dd(Storage::disk('public')->url($path));
-        $image->cat_id = $cat->id;
-        $image->save();
+
+        foreach($request->file('images') as $uploadedFile) {
+            $image = new Image();
+            $image->path = $uploadedFile->store('images', 'public');
+            //dd(Storage::disk('public')->url($path));
+            $image->cat_id = $cat->id;
+            $image->save();
+        }
         return response()->redirectToRoute('cats.index');
     }
 

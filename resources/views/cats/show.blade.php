@@ -26,6 +26,19 @@
                 <th>Description</th>
                 <td>{{$cat->description}}</td>
             </tr>
+            @if($cat->images->count())
+                <tr>
+
+
+                    <th>Images</th>
+                    <td>
+                        @foreach($cat->images as $image)
+                        <img width="300" height="200" src="{{$image->fullPath}}"/>
+                        @endforeach
+
+                    </td>
+                </tr>
+            @endempty
         </table>
     </div>
 @endsection

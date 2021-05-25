@@ -20,7 +20,7 @@ class ImageSeeder extends Seeder
 //        }
 
         Cat::all()->each(function ($cat) {
-            Image::factory()->create(['cat_id' => $cat->id]);
+            Image::factory()->count(rand(0, 3))->create(['cat_id' => $cat->id]);
         });
     }
 }
