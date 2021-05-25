@@ -28,7 +28,12 @@
 
     @endif
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><b>{{__('Breed')}}:</b> {{$cat->breed}}</li>
+        <li class="list-group-item">
+            <b>{{__('Breed')}}:</b>
+            <a href="{{route('breed', ['breed' => $cat->breed->id])}}">
+                {{$cat->breed->name}}
+            </a>
+        </li>
         <li class="list-group-item"><b>{{__('Age')}}:</b> {{ $cat->age }}</li>
         <li class="list-group-item"><b>{{__('Gender')}}:</b> {{ __(ucfirst(strtolower($cat->gender))) }}</li>
     </ul>

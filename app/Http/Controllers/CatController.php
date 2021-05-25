@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCatRequest;
+use App\Models\Breed;
 use App\Models\Cat;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class CatController extends Controller
      */
     public function create()
     {
-        return response()->view('cats.create');
+        $breeds = Breed::all();
+        return response()->view('cats.create', compact('breeds'));
     }
 
     /**
@@ -42,6 +44,13 @@ class CatController extends Controller
     public function store(CreateCatRequest $request)
     {
         $cat = new Cat($request->validated());
+        $breed = Breed::where('name', $request->validated()['breed'])->first();
+        if(!$breed){
+            $breed = new Breed();
+            $breed->name = $request->validated()['breed'];
+            $breed->save();
+        }
+        $cat->breed_id = $breed->id;
         $cat->save();
 
         foreach($request->file('images') as $uploadedFile) {
@@ -73,7 +82,8 @@ class CatController extends Controller
      */
     public function edit(Cat $cat)
     {
-        return response()->view('cats.edit', compact('cat'));
+        $breeds = Breed::all();
+        return response()->view('cats.edit', compact('cat', 'breeds'));
     }
 
     /**

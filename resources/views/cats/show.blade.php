@@ -16,7 +16,7 @@
             </tr>
             <tr>
                 <th>Breed</th>
-                <td>{{$cat->breed}}</td>
+                <td>{{$cat->breed->name}}</td>
             </tr>
             <tr>
                 <th>Gender</th>

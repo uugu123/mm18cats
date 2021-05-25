@@ -24,7 +24,13 @@
                 </div>
                 @enderror
                 <label for="breed" class="form-label">Breed</label>
-                <input type="text" class="form-control" id="breed" name="breed" placeholder="Breed" value="{{ old('breed') ?? $cat->breed}}" required>
+
+                <input class="form-control"  id="breed" name="breed" list="datalistOptions" placeholder="Type to search..." value="{{ old('breed') ?? $cat->breed->name }}" required>
+                <datalist id="datalistOptions">
+                    @foreach($breeds as $breed)
+                        <option value="{{$breed->name}}">
+                    @endforeach
+                </datalist>
             </div>
             <div class="mb-3">
                 @error('birthday')
@@ -33,7 +39,7 @@
                 </div>
                 @enderror
                 <label for="birthday" class="form-label">Birthday</label>
-                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" value="{{ old('birthday') ?? $cat->birthday }}" required>
+                <input type="date" class="form-control" id="birthday" name="birthday" placeholder="Birthday" value="{{ old('birthday') ?? $cat->birthday->toDateString() }}" required>
             </div>
             <div class="mb-3">
                 @error('gender')

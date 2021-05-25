@@ -9,7 +9,7 @@ class Cat extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'breed', 'gender', 'birthday', 'description'];
+    protected $fillable = ['name', 'gender', 'birthday', 'description'];
 
     protected $casts = ['birthday' => 'datetime'];
 
@@ -19,5 +19,9 @@ class Cat extends Model
 
     public function images(){
         return $this->hasMany(Image::class);
+    }
+
+    public function breed(){
+        return $this->belongsTo(Breed::class);
     }
 }

@@ -22,7 +22,12 @@
                 </div>
                 @enderror
                 <label for="breed" class="form-label">Breed</label>
-                <input type="text" class="form-control" id="breed" name="breed" placeholder="Breed" value="{{ old('breed') }}" required>
+                <input class="form-control"  id="breed" name="breed" list="datalistOptions" placeholder="Type to search..." value="{{ old('breed') }}" required>
+                <datalist id="datalistOptions">
+                    @foreach($breeds as $breed)
+                        <option value="{{$breed->name}}">
+                    @endforeach
+                </datalist>
             </div>
             <div class="mb-3">
                 @error('birthday')

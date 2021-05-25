@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-Route::get('/{cat}', [HomeController::class, 'single'])->name('single');
+Route::get('/breed/{breed}', [HomeController::class, 'breed'])->name('breed');
+Route::get('/{cat}', [HomeController::class, 'single'])->name('single')->where('cat', '[0-9]+');
+
 Route::get('/setlang', [HomeController::class, 'setLang'])->name('lang.set');
 
 Route::middleware(['auth'])->group(function() {
@@ -29,3 +31,4 @@ Route::middleware(['auth'])->group(function() {
     })->name('profile');
     Route::resource('cats', CatController::class);
 });
+
