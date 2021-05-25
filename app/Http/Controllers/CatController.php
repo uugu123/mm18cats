@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateCatRequest;
 use App\Models\Cat;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,8 +43,11 @@ class CatController extends Controller
     {
         $cat = new Cat($request->validated());
         $cat->save();
-        $path = $request->file('image')->store('images', 'public');
-        dd(Storage::disk('public')->url($path));
+        $image = new Image();
+        $image->path = $request->file('image')->store('images', 'public');
+        //dd(Storage::disk('public')->url($path));
+        $image->cat_id = $cat->id;
+        $image->save();
         return response()->redirectToRoute('cats.index');
     }
 

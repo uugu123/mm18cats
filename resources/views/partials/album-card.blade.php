@@ -4,7 +4,7 @@
     </h5>
 {{--    <img class="card-img-top" width="100%" height="200" src="{{$cat->images[0]->path ?? 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png'}}"/>--}}
     @if($cat->images->count())
-        <img class="card-img-top" width="100%" height="200" src="{{$cat->images[0]->path}}"/>
+        <img class="card-img-top" width="100%" height="200" src="{{$cat->images[0]->fullPath}}"/>
     @endempty
     <ul class="list-group list-group-flush">
         <li class="list-group-item"><b>{{__('Breed')}}:</b> {{$cat->breed}}</li>
